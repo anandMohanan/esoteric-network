@@ -5,7 +5,7 @@ type LayoutProps = {
     className?: string;
 };
 
-const Layout = ({ children, className }: LayoutProps) => {
+ const Layout = ({ children, className }: LayoutProps) => {
     return (
         <html
             lang="en"
@@ -23,7 +23,7 @@ type MainProps = {
     id?: string;
 };
 
-const Main = ({ children, className, id }: MainProps) => {
+ const Main = ({ children, className, id }: MainProps) => {
     return (
         <main
             className={cn(
