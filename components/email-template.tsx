@@ -15,14 +15,14 @@ export const EmailTemplate = () => {
                         variant={"outline"}
                     >
                         <a className="not-prose" href="https://horizon.vercel.app">
-                            Visit our website for latest updates <ArrowRight className="w-4" />
+                            Visit Horizon
                         </a>
                     </Button>
                     <h1>
                         Thank you for joining our waitlist!
                     </h1>
                     <h3 className="text-muted-foreground">
-                        We're excited to have you on board. We'll be in touch soon with more information.
+                        We're excited to have you on board. We will be in touch soon with more information.
                     </h3>
                     <div className="not-prose my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
                     </div>
