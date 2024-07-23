@@ -69,15 +69,16 @@ export const HomeForm = () => {
                                     className="md:w-96"
                                     placeholder="Enter your email address"
                                     {...field}
+                                    disabled
                                 />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button className="w-full" type="submit" disabled={isPending}>
+                <Button className="w-full" type="submit" disabled>
                     {isPending && <Loader2 className="animate-spin" />}
-                    Join the waitlist
+                    Join the waitlist (soon)
                 </Button>
             </form>
         </Form>
