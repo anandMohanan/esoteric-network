@@ -14,6 +14,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useToast } from "@/components/ui/use-toast"
 import { SignupUserAction } from "@/server/actions/user"
 import { useRouter } from "next/navigation"
+import { primaryfont, secondaryfont, specialfont } from "@/lib/fonts"
 
 export const SignupForm = () => {
     const form = useForm<SIGNUPFORMTYPE>({
@@ -46,8 +47,8 @@ export const SignupForm = () => {
                 description: "We've created your account for you.",
                 variant: "default",
             })
-            router.push("/")
-            
+            router.push("/app")
+
         }
     })
 
@@ -56,23 +57,11 @@ export const SignupForm = () => {
         createAccount(values)
     }
     return (
-        <div className="flex items-center justify-center h-screen">
-            <Link
-                href="/"
-                className={cn(
-                    buttonVariants({ variant: "ghost" }),
-                    "absolute left-4 top-4 md:left-8 md:top-8"
-                )}
-            >
-                <>
-                    <ChevronLeft className="w-4 h-4 mr-2" />
-                    Back
-                </>
-            </Link>
+        <div className="flex items-center justify-center m-auto">
             <Card className="m-auto max-w-sm">
                 <CardHeader>
-                    <CardTitle className="text-xl">Sign Up</CardTitle>
-                    <CardDescription>
+                    <CardTitle className={cn("text-xl", primaryfont.className)}>Sign Up</CardTitle>
+                    <CardDescription className={cn(secondaryfont.className)}>
                         Enter your information to create an account
                     </CardDescription>
                 </CardHeader>
@@ -86,9 +75,9 @@ export const SignupForm = () => {
                                         name="userName"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Username</FormLabel>
+                                                <FormLabel className={cn(primaryfont.className)}>Username</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="max" {...field} />
+                                                    <Input placeholder="max" {...field} className={secondaryfont.className} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -101,9 +90,9 @@ export const SignupForm = () => {
                                         name="email"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel className={cn(primaryfont.className)}>Email</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="max@email.com" {...field} />
+                                                    <Input placeholder="max@email.com" {...field} className={secondaryfont.className} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -116,21 +105,21 @@ export const SignupForm = () => {
                                         name="password"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Password</FormLabel>
+                                                <FormLabel className={cn(primaryfont.className)}>Password</FormLabel>
                                                 <FormControl>
-                                                    <Input type="password" placeholder="*********" {...field} />
+                                                    <Input type="password" placeholder="*********" {...field} className={secondaryfont.className} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
                                 </div>
-                                <Button type="submit" disabled={createAccountPending}>{createAccountPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}Create Account</Button>
+                                <Button className={primaryfont.className} type="submit" disabled={createAccountPending}>{createAccountPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}Create Account</Button>
                             </div>
                         </form>
                     </Form>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className={cn(specialfont.className, "text-xl")}>
                     Already have an account? <Link href="/signin" className={cn(buttonVariants({ variant: "link" }))}>Sign in</Link>
                 </CardFooter>
             </Card>

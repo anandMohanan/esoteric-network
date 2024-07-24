@@ -21,20 +21,17 @@ import { useToast } from "./ui/use-toast"
 import { Button } from "./ui/button"
 import { Loader2 } from "lucide-react"
 import { primaryfont, secondaryfont } from "@/lib/fonts"
+import { useRouter } from "next/navigation"
 
 
 export function NavigationMenuComponent() {
     const session = useSession()
     console.log(session)
     const { toast } = useToast()
+    const router = useRouter()
     const { mutate: logoutUser, isPending: logoutPending } = useMutation({
         mutationFn: async () => {
             await SignoutUserAction()
-            toast({
-                title: "Success",
-                description: "You have been signed out.",
-                variant: "default",
-            })
         },
         onError(error, variables, context) {
             toast({
@@ -42,6 +39,14 @@ export function NavigationMenuComponent() {
                 description: "Please try again.",
                 variant: "destructive",
             })
+        },
+        onSuccess: () => {
+            toast({
+                title: "Success",
+                description: "You have been signed out.",
+                variant: "default",
+            })
+            router.push("/")
         },
     })
     return (

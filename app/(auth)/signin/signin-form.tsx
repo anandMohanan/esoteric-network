@@ -16,6 +16,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { SigninUserAction, SignupUserAction } from "@/server/actions/user"
 import { ToastAction } from "@/components/ui/toast"
 import { useRouter } from "next/navigation"
+import { primaryfont, secondaryfont, specialfont } from "@/lib/fonts"
 
 export const SigninForm = () => {
     const form = useForm<SIGNINFORMTYPE>({
@@ -54,7 +55,7 @@ export const SigninForm = () => {
                 title: "Signed in Successfully",
                 variant: "default",
             })
-            router.push("/")
+            router.push("/app")
         },
     })
 
@@ -63,22 +64,10 @@ export const SigninForm = () => {
         signInAccount(values)
     }
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <Link
-                href="/"
-                className={cn(
-                    buttonVariants({ variant: "ghost" }),
-                    "absolute left-4 top-4 md:left-8 md:top-8"
-                )}
-            >
-                <>
-                    <ChevronLeft className="w-4 h-4 mr-2" />
-                    Back
-                </>
-            </Link>
+        <div className="flex items-center justify-center">
             <Card className="m-auto max-w-sm">
                 <CardHeader>
-                    <CardTitle className="text-xl">Sign In</CardTitle>
+                    <CardTitle className={cn("text-xl", primaryfont.className)}>Sign In</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
@@ -90,9 +79,9 @@ export const SigninForm = () => {
                                         name="email"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel className={cn(primaryfont.className)}>Email</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="max@email.com" {...field} />
+                                                    <Input className={secondaryfont.className} placeholder="max@email.com" {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -105,21 +94,23 @@ export const SigninForm = () => {
                                         name="password"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Password</FormLabel>
+                                                <FormLabel className={cn(primaryfont.className)}>Password</FormLabel>
                                                 <FormControl>
-                                                    <Input type="password" placeholder="*********" {...field} />
+                                                    <Input type="password" placeholder="*********"
+                                                        className={secondaryfont.className}
+                                                        {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
                                 </div>
-                                <Button type="submit" disabled={signInPending} >{signInPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}Sign In</Button>
+                                <Button className={primaryfont.className} type="submit" disabled={signInPending} >{signInPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}Sign In</Button>
                             </div>
                         </form>
                     </Form>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className={cn(specialfont.className, "text-xl")}>
                     Don't have an account? <Link href="/signup" className={cn(buttonVariants({ variant: "link" }))}>Sign up</Link>
                 </CardFooter>
             </Card>
