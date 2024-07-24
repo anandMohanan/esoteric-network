@@ -26,7 +26,6 @@ import { useRouter } from "next/navigation"
 
 export function NavigationMenuComponent() {
     const session = useSession()
-    console.log(session)
     const { toast } = useToast()
     const router = useRouter()
     const { mutate: logoutUser, isPending: logoutPending } = useMutation({
@@ -59,7 +58,7 @@ export function NavigationMenuComponent() {
                             <li className="row-span-3">
                                 <NavigationMenuLink asChild>
                                     <a
-                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                        className="flex w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                                         href="/"
                                     >
                                         <Image
