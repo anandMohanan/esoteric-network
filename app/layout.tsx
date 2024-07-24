@@ -4,6 +4,7 @@ import "./globals.css";
 import { Layout } from "@/components/dividers";
 import { QueryProvider } from "@/lib/providers/query";
 import { Toaster } from "@/components/ui/toaster";
+import { NavigationMenuComponent } from "@/components/nav-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Layout>
             <body className={inter.className}>
                 <QueryProvider>
+                    <NavigationMenuComponent />
                     {children}
                 </QueryProvider>
                 <Toaster />
