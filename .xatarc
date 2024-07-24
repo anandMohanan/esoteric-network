@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://anand-s-workspace-8aa46o.eu-central-1.xata.sh/db/horizon",
+  "codegen": {
+    "output": "xata.ts"
+  }
+}
