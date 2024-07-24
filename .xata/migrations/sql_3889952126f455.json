@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_3889952126f455",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"user\" RENAME COLUMN id TO user_id"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_3889952126f455",
+  "parent": "sql_907a6bddbd86ff",
+  "schema": "public",
+  "startedAt": "2024-07-24T08:24:00.461807Z"
+}

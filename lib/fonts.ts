@@ -2,7 +2,7 @@ import { IBM_Plex_Mono, Proza_Libre, Cormorant } from "next/font/google"
 
 export const primaryfont = IBM_Plex_Mono({
     subsets: ["latin"],
-    weight: "400",
+    weight: ["400", "500", "600", "700"],
     style: "normal",
     display: "swap",
 })

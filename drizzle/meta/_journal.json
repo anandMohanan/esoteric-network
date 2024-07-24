@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1721807965411,
+      "tag": "0000_typical_loners",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1721809421073,
+      "tag": "0001_flippant_blue_shield",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1721813963404,
+      "tag": "0002_lonely_runaways",
+      "breakpoints": true
+    }
+  ]
+}
