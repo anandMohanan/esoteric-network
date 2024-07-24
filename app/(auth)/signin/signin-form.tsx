@@ -111,7 +111,7 @@ export const SigninForm = () => {
                     </Form>
                 </CardContent>
                 <CardFooter className={cn(specialfont.className, "text-xl")}>
-                    Don't have an account? <Link href="/signup" className={cn(buttonVariants({ variant: "link" }))}>Sign up</Link>
+                    Do not have an account? <Link href="/signup" className={cn(buttonVariants({ variant: "link" }))}>Sign up</Link>
                 </CardFooter>
             </Card>
         </div>
