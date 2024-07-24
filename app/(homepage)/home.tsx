@@ -35,7 +35,6 @@ export const HomePageContent = () => {
                             Unleash your inner mystic. Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.
                         </Balancer>
                     </p>
-                    <HomeForm />
                     <div className="my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
                         <Image
                             className="not-prose h-full w-full object-cover object-bottom"
