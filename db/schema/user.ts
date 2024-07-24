@@ -1,7 +1,8 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { createId } from "@paralleldrive/cuid2";
 
-export const userTable = pgTable("user", {
-    id: text("id").primaryKey(),
+export const UserTable = pgTable("user", {
+    id: text("id").notNull().primaryKey().$defaultFn(() => createId()),
     username: text("username").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
@@ -15,11 +16,16 @@ export const userTable = pgTable("user", {
     })
 });
 
-export const sessionTable = pgTable("session", {
+
+export type InsertUser = typeof UserTable.$inferInsert
+export type SelectUser = typeof UserTable.$inferSelect
+
+
+export const SessionTable = pgTable("session", {
     id: text("id").primaryKey(),
     userId: text("user_id")
         .notNull()
-        .references(() => userTable.id),
+        .references(() => UserTable.id),
     expiresAt: timestamp("expires_at", {
         withTimezone: true,
         mode: "date"

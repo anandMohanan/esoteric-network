@@ -14,11 +14,38 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import Image from "next/image"
+import { useSession } from "@/lib/providers/session"
+import { useMutation } from "@tanstack/react-query"
+import { SignoutUserAction } from "@/server/actions/user"
+import { useToast } from "./ui/use-toast"
+import { Button } from "./ui/button"
+import { Loader2 } from "lucide-react"
+import { primaryfont, secondaryfont } from "@/lib/fonts"
 
 
 export function NavigationMenuComponent() {
+    const session = useSession()
+    console.log(session)
+    const { toast } = useToast()
+    const { mutate: logoutUser, isPending: logoutPending } = useMutation({
+        mutationFn: async () => {
+            await SignoutUserAction()
+            toast({
+                title: "Success",
+                description: "You have been signed out.",
+                variant: "default",
+            })
+        },
+        onError(error, variables, context) {
+            toast({
+                title: error.message,
+                description: "Please try again.",
+                variant: "destructive",
+            })
+        },
+    })
     return (
-        <NavigationMenu className="w-full p-6 ">
+        <NavigationMenu className={cn("w-full p-6  ", primaryfont.className)}>
             <NavigationMenuList className="flex min-w-full justify-between">
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Horizon</NavigationMenuTrigger>
@@ -43,27 +70,60 @@ export function NavigationMenuComponent() {
                                 </NavigationMenuLink>
                             </li>
                             <ListItem title="About" href="/about">
-                                <p className="text-sm  text-muted-foreground">
+                                <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
                                     Horizon is a platform for sharing esoteric thoughts, ideas,
                                     and writings. It is a place where you can connect with
                                     others who share your interests and passions. Whether you are a seasoned esoteric enthusiast or a newcomer to the world of esoteric thought, Horizon is the perfect place
                                 </p>
                             </ListItem>
-                            <ListItem title="Created By" >
-                                <p className="text-sm  text-muted-foreground">
+                            <ListItem title="Created By" className="cursor-cell" >
+                                <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
                                     Niemand
                                 </p>
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <Link href="/signin" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Sign In
-                        </NavigationMenuLink>
-                    </Link>
-                </NavigationMenuItem>
+                {session.user ? (
+                    <>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>{session.user.username}</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className=" gap-3 p-4 md:w-[400px] lg:w-[300px] flex flex-col">
+                                    <li className="row-span-3">
+                                        <NavigationMenuLink asChild>
+                                            <a
+                                                className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                                href={`/profile/${session.user.id}`}
+                                            >
+                                                <Image
+                                                    src="/sisyphus.png"
+                                                    alt="Sisyphus"
+                                                    width={200}
+                                                    height={800}
+                                                />
+                                                <div className="mb-2 mt-4 text-lg font-medium">
+                                                    Profile
+                                                </div>
+                                            </a>
+                                        </NavigationMenuLink>
+                                    </li>
+                                    <Button variant={"outline"} onClick={() => logoutUser()} disabled={logoutPending}>
+                                        {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
+                                    </Button>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                    </>
+                ) : (
+                    <NavigationMenuItem>
+                        <Link href="/signin" legacyBehavior passHref>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                Sign In
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                )}
             </NavigationMenuList>
         </NavigationMenu>
     )

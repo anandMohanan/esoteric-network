@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_907a6bddbd86ff",
+    "operations": [
+      {
+        "sql": {
+          "up": "DO $$BEGIN ALTER TABLE session ADD CONSTRAINT session_user_id_user_id_fk FOREIGN KEY (user_id) REFERENCES bb_fkf9ib90693q5fhvlirt8i7nk8_8aa46o.\"user\" (id); EXCEPTION \n WHEN duplicate_object THEN null;\n END$$"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_907a6bddbd86ff",
+  "parent": "sql_882a816cfb0f1d",
+  "schema": "public",
+  "startedAt": "2024-07-24T08:01:24.63788Z"
+}
