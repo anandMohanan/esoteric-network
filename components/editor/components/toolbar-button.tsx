@@ -35,7 +35,7 @@ const ToolbarButton = forwardRef<HTMLButtonElement, ToolbarButtonProps>(function
         </TooltipTrigger>
         {tooltip && (
           <TooltipContent {...tooltipOptions}>
-            <div className="flex flex-col items-center text-center">{tooltip}</div>
+            <div className="">{tooltip}</div>
           </TooltipContent>
         )}
       </Tooltip>

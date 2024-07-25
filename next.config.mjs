@@ -8,12 +8,6 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-    remotePatterns: [
-        {
-            protocol: "https",
-            hostname: "blob.vercel.app",
-        },
-    ],
 };
 
 export default nextConfig;

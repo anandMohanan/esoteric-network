@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     contentType,
     access: "public",
   });
+  console.log(blob, "blob");
 
   return NextResponse.json(blob);
 }

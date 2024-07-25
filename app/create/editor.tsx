@@ -16,9 +16,9 @@ import { useState } from "react";
 
 export const EditorComponent = () => {
     const [value, setValue] = useState<string>();
-    console.log(value);
     const [title, setTitle] = useState("");
     const { toast } = useToast()
+    console.log(value)
     const router = useRouter()
     const { mutateAsync: INTERNAL__createPost, isPending } = useMutation({
         mutationFn: async () => {
