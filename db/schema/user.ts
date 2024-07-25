@@ -6,14 +6,16 @@ export const UserTable = pgTable("user", {
     username: text("username").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
+    bio: text("bio"),
+    profileUrl: text("profile_url"),
     createdAt: timestamp("created_at", {
         withTimezone: true,
         mode: "date"
-    }),
+    }).defaultNow(),
     updatedAt: timestamp("updated_at", {
         withTimezone: true,
         mode: "date"
-    })
+    }).defaultNow()
 });
 
 

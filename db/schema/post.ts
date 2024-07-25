@@ -9,10 +9,10 @@ export const PostTable = pgTable("post", {
     createdAt: timestamp("created_at", {
         withTimezone: true,
         mode: "date"
-    }),
+    }).defaultNow(),
     updatedAt: timestamp("updated_at", {
         withTimezone: true,
         mode: "date"
-    }),
+    }).defaultNow(),
     userId: text("user_id").notNull().references(() => UserTable.id)
 });

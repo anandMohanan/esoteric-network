@@ -46,16 +46,14 @@ export const EditorComponent = () => {
         <Section className=" mx-auto">
             <div className="md:w-[1000px] mx-auto">
                 <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                    Start writing:
+                    Create a post:
                 </h2>
-                <blockquote className="m-6  border-l-2 pl-6 italic">
-                    Type / to change text styles, add images, and more.
-                </blockquote>
             </div>
             <div className="flex flex-col p-8 w-[80%] mx-auto gap-6">
-                <Label>Title</Label>
-                <Input placeholder="Title of your Post
-                " onChange={(e) => setTitle(e.target.value)} className="text-xl h-[60px]" />
+                <Input placeholder="Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="text-4xl h-[60px] border-none underline outline-none focus:outline-none focus:ring-0 focus:ring-transparent"
+                />
                 <Label>Content</Label>
                 <MinimalTiptapEditor
                     value={value}

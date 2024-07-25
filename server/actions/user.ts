@@ -11,6 +11,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { validateUser } from "@/lib/validateuser";
+import { revalidatePath } from "next/cache";
 
 export const SignupUserAction = async ({ formData }: { formData: SIGNUPFORMTYPE }) => {
     let redirectPath: string | null = null
@@ -108,3 +109,29 @@ export const SignoutUserAction = async () => {
         redirect("/")
     }
 };
+
+
+export const UpdateUserImageAction = async ({ image }: { image: string }) => {
+    try {
+        const { user } = await validateUser()
+        await db.update(UserTable).set({ profileUrl: image }).where(eq(UserTable.id, user?.id))
+        revalidatePath(`/profile/${user?.id}`)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+
+export const UpdateUserAction = async ({ username, bio }: { username: string, bio: string }) => {
+    try {
+        const { user } = await validateUser()
+        const userAlreadyExists = await db.select().from(UserTable).where(eq(UserTable.username, user))
+        if (userAlreadyExists.length > 0) {
+            throw new Error("Username already exists");
+        }
+        await db.update(UserTable).set({ bio, username }).where(eq(UserTable.id, user?.id))
+        revalidatePath(`/profile/${user?.id}`)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}

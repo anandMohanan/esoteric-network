@@ -36,6 +36,20 @@
       "when": 1721843519755,
       "tag": "0004_bouncy_outlaw_kid",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1721916228735,
+      "tag": "0005_lonely_ma_gnuci",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1721920967203,
+      "tag": "0006_marvelous_millenium_guard",
+      "breakpoints": true
     }
   ]
 }
