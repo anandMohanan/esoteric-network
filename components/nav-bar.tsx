@@ -93,7 +93,7 @@ export function NavigationMenuComponent() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>{session.user.username}</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className=" gap-3 p-4 md:w-[400px] lg:w-[300px] flex flex-col">
+                                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                                     <li className="row-span-3">
                                         <NavigationMenuLink asChild>
                                             <a
@@ -112,8 +112,18 @@ export function NavigationMenuComponent() {
                                             </a>
                                         </NavigationMenuLink>
                                     </li>
+                                    <ListItem title="Create" href="/create">
+                                        <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
+                                            Create a new post
+                                        </p>
+                                    </ListItem>
+                                    <ListItem title="View" href="/view">
+                                        <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
+                                            View your posts
+                                        </p>
+                                    </ListItem>
                                     <Button variant={"outline"} onClick={() => logoutUser()} disabled={logoutPending}>
-                                        {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
+                                    {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
                                     </Button>
                                 </ul>
                             </NavigationMenuContent>

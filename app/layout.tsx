@@ -4,6 +4,7 @@ import "./globals.css";
 import { Layout } from "@/components/dividers";
 import { QueryProvider } from "@/lib/providers/query";
 import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { NavigationMenuComponent } from "@/components/nav-bar";
 import { SessionProvider } from "@/lib/providers/session";
 import { validateUser } from "@/lib/validateuser";
@@ -47,6 +48,7 @@ export default async function RootLayout({
                         {children}
                     </QueryProvider>
                     <Toaster />
+                    <SonnerToaster />
                 </SessionProvider>
             </body>
         </Layout>

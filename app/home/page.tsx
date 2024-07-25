@@ -3,8 +3,10 @@ import { primaryfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { validateUser } from "@/lib/validateuser";
 import { redirect } from "next/navigation";
+import { EditorComponent } from "./editor";
+import "./prosemirror.css";
 
-export default function Page() {
+export default function HomePage() {
     const user = validateUser()
     if (!user) {
         redirect("/signin")

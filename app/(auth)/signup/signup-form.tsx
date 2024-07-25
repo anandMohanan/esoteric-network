@@ -47,7 +47,7 @@ export const SignupForm = () => {
                 description: "We've created your account for you.",
                 variant: "default",
             })
-            router.push("/app")
+            router.push("/home")
 
         }
     })
