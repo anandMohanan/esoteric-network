@@ -8,6 +8,10 @@ import { EditProfile } from "./edit-profile"
 import { PostTable } from "@/db/schema/post"
 import { RenderPosts } from "@/components/render-posts"
 import { validateUser } from "@/lib/validateuser"
+import { Trash2 } from "lucide-react"
+import { DeletePost } from "./delete-post"
+import { cn } from "@/lib/utils"
+import { primaryfont, secondaryfont } from "@/lib/fonts"
 
 interface Props {
     params: {
@@ -35,14 +39,14 @@ export default async function Profile({ params }: Props) {
                         <AvatarFallback>{user[0].username[0]}</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                        <h1 className="text-2xl font-bold">{user[0].username}</h1>
+                        <h1 className={cn("text-2xl font-bold", primaryfont.className)}>{user[0].username}</h1>
                     </div>
                 </div>
-                <EditProfile user={user[0]} validatedUser={validatedUser} />
+                {validatedUser?.id == user[0].userId && <EditProfile user={user[0]} />}
             </Container>
             <Container>
                 <h2 className="text-xl font-bold">Bio</h2>
-                <p className="text-gray-500">
+                <p className={cn("text-gray-500", secondaryfont.className)}>
                     {user[0].bio ?? "No bio available, Click edit to add one"}
                 </p>
             </Container>
@@ -50,13 +54,18 @@ export default async function Profile({ params }: Props) {
                 <h2 className="text-xl font-bold">{validatedUser?.id === slugId! ? "Your posts" : "Posts"}</h2>
                 {userPosts.length > 0 &&
                     userPosts.map((post, index) => {
-                        return <RenderPosts key={index} postTitle={post.title}
-                            postId={post.id}
-                            postCreated={post.createdAt?.toISOString().split("T")[0]!}
-                        />
+                        return (
+                            <>
+                                <RenderPosts key={index} postTitle={post.title}
+                                    postId={post.id}
+                                    postCreated={post.createdAt?.toISOString().split("T")[0]!}
+                                />
+                                {validatedUser?.id == slugId! && <DeletePost postId={post.id} />}
+                            </>
+                        )
                     })
                 }
-                {userPosts.length === 0 && <p className="text-gray-500">No posts yet</p>}
+                {userPosts.length === 0 && <p className={cn("text-gray-500", secondaryfont.className)}>No posts yet</p>}
             </Container>
         </Section>
     )

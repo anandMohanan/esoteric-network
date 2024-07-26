@@ -16,7 +16,7 @@ export const secondaryfont = Proza_Libre({
 
 export const specialfont = Cormorant({
     subsets: ["latin"],
-    weight: "700",
+    weight: ["400", "500", "600", "700"],
     style: "normal",
     display: "swap",
 })

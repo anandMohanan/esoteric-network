@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { primaryfont } from "@/lib/fonts";
+import { primaryfont, secondaryfont, specialfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { CreatePostAction } from "@/server/actions/post";
 import { useMutation } from "@tanstack/react-query";
@@ -44,17 +44,12 @@ export const EditorComponent = () => {
     })
     return (
         <Section className=" mx-auto">
-            <div className="md:w-[1000px] mx-auto">
-                <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                    Create a post:
-                </h2>
-            </div>
             <div className="flex flex-col p-8 w-[80%] mx-auto gap-6">
-                <Input placeholder="Title"
+                <Input placeholder="Enter your Title"
                     onChange={(e) => setTitle(e.target.value)}
-                    className="text-4xl h-[60px] border-none underline outline-none focus:outline-none focus:ring-0 focus:ring-transparent"
+                    className={cn("text-4xl h-[60px] border-none underline outline-none focus:outline-none focus:ring-0 focus:ring-transparent", primaryfont.className)}
                 />
-                <Label>Content</Label>
+                <Label className={cn("text-xl font-bold", secondaryfont.className)}>Content:</Label>
                 <MinimalTiptapEditor
                     value={value}
                     onValueChange={setValue}
@@ -63,9 +58,8 @@ export const EditorComponent = () => {
                     contentClass={cn(" mt-8", primaryfont.className)}
                 />
 
-                <Button onClick={() => INTERNAL__createPost()} className="w-full" disabled={isPending}>
-                    {isPending && <Loader2 className="animate-spin" />}
-                    Create Post
+                <Button onClick={() => INTERNAL__createPost()} className={cn("w-full text-xl font-extrabold", specialfont.className)} disabled={isPending}>
+                    {isPending ? <Loader2 className="animate-spin mr-2" /> : "Create Post"}
                 </Button>
             </div>
         </Section>

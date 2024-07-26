@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
+import { secondaryfont } from '@/lib/fonts'
 
 interface ImageEditBlockProps extends React.HTMLAttributes<HTMLDivElement> {
     editor: Editor
@@ -86,7 +87,7 @@ const ImageEditBlock = ({ editor, className, close, ...props }: ImageEditBlockPr
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={secondaryfont.className}>
             <div className={cn('space-y-6', className)} {...props}>
                 <div className="space-y-1">
                     <Label>Attach an image link</Label>
