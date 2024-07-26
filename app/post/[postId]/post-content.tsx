@@ -2,6 +2,8 @@
 
 import { Section } from "@/components/dividers";
 import { MinimalTiptapEditor } from "@/components/editor";
+import { primaryfont } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 
@@ -11,7 +13,7 @@ export const PostContent = ({ content }: { content: string }) => {
             <MinimalTiptapEditor
                 onValueChange={() => { }}
                 outputValue="json"
-                contentClass="mx-auto border-none "
+                contentClass={cn("mx-auto border-none ", primaryfont.className)}
                 disabled={true}
                 initialContent={content}
             />

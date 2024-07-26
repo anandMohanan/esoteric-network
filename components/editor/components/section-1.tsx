@@ -6,6 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ToolbarButton } from './toolbar-button'
 import { ShortcutKey } from './shortcut-key'
 import { activeItemClass, DropdownMenuItemClass } from '../utils'
+import { secondaryfont } from '@/lib/fonts'
 
 export default function SectionOne({ editor }: { editor: Editor }) {
     const toggleHeading = (level: Level) => {
@@ -26,7 +27,7 @@ export default function SectionOne({ editor }: { editor: Editor }) {
                     <CaretDownIcon className="size-5" />
                 </ToolbarButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-full">
+            <DropdownMenuContent align="start" className={cn("w-full", secondaryfont.className)}>
                 <DropdownMenuItem
                     onClick={() => editor.chain().focus().setParagraph().run()}
                     className={cn(DropdownMenuItemClass, {

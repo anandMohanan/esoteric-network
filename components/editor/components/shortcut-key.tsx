@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { getShortcutKeys } from '../utils'
+import { primaryfont } from '@/lib/fonts'
 
 interface ShortcutKeyProps extends React.HTMLAttributes<HTMLSpanElement> {
   keys: string[]
@@ -10,7 +11,7 @@ const ShortcutKey = ({ className, keys, withBg, ...props }: ShortcutKeyProps) =>
   return (
     <span className={cn('text-xs tracking-widest opacity-60', className)} {...props}>
       <span
-        className={cn('ml-4', {
+        className={cn('ml-4',primaryfont.className, {
           'self-end rounded bg-accent p-1 leading-3': withBg
         })}
       >

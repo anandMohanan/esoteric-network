@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import { YourPosts } from "../profile/[slugId]/your-posts";
 import { UserTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
+import { RenderPosts } from "@/components/render-posts";
 
 export default async function HomePage() {
     const user = validateUser()
@@ -26,7 +27,7 @@ export default async function HomePage() {
             <Container>
                 {
                     latestPosts.map((post, index) => {
-                        return <YourPosts key={index} postTitle={post.title}
+                        return <RenderPosts key={index} postTitle={post.title}
                             postId={post.id}
                             postCreated={post.createdAt?.toISOString().split("T")[0]!}
                         />

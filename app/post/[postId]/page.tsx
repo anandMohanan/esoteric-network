@@ -11,6 +11,8 @@ import { UserTable } from "@/db/schema/user";
 import { Container, Section } from "@/components/dividers";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { primaryfont, secondaryfont } from "@/lib/fonts";
 
 export default async function PostPage({ params }: PostPageProps) {
     const { postId } = params
@@ -24,10 +26,10 @@ export default async function PostPage({ params }: PostPageProps) {
 
             <Container className="md:flex md:justify-between gap-2 flex flex-col md:flex-row items-center align-bottom">
                 <div className="md:flex flex-col flex gap-6 items-center md:items-start ">
-                    <h1 className="text-center underline decoration-wavy scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+                    <h1 className={cn("text-center underline decoration-wavy scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl", primaryfont.className)}>
                         {postData[0].title}
                     </h1>
-                    <p className="mt-2 text-gray-500">
+                    <p className={cn("mt-2 text-gray-500", secondaryfont.className)}>
                         {postData[0].createdAt?.toISOString().split("T")[0]!}
                     </p>
                 </div>
