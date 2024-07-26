@@ -5,8 +5,9 @@ import { db } from "@/db"
 import { UserTable } from "@/db/schema/user"
 import { eq } from "drizzle-orm"
 import { EditProfile } from "./edit-profile"
-import { YourPosts } from "./your-posts"
 import { PostTable } from "@/db/schema/post"
+import { RenderPosts } from "@/components/render-posts"
+import { validateUser } from "@/lib/validateuser"
 
 interface Props {
     params: {
@@ -15,9 +16,10 @@ interface Props {
 }
 
 export default async function Profile({ params }: Props) {
+    const { user: validatedUser } = await validateUser()
     const { slugId } = params
     const user = await db
-        .select({ username: UserTable.username, profileUrl: UserTable.profileUrl, bio: UserTable.bio })
+        .select({ userId: UserTable.id, username: UserTable.username, profileUrl: UserTable.profileUrl, bio: UserTable.bio })
         .from(UserTable).where(eq(UserTable.id, slugId!))
     const userPosts = await db
         .select({ title: PostTable.title, id: PostTable.id, createdAt: PostTable.createdAt })
@@ -36,7 +38,7 @@ export default async function Profile({ params }: Props) {
                         <h1 className="text-2xl font-bold">{user[0].username}</h1>
                     </div>
                 </div>
-                <EditProfile user={user[0]} />
+                <EditProfile user={user[0]} validatedUser={validatedUser} />
             </Container>
             <Container>
                 <h2 className="text-xl font-bold">Bio</h2>
@@ -45,10 +47,10 @@ export default async function Profile({ params }: Props) {
                 </p>
             </Container>
             <Container>
-                <h2 className="text-xl font-bold">Your posts</h2>
+                <h2 className="text-xl font-bold">{validatedUser?.id === slugId! ? "Your posts" : "Posts"}</h2>
                 {userPosts.length > 0 &&
                     userPosts.map((post, index) => {
-                        return <YourPosts key={index} postTitle={post.title}
+                        return <RenderPosts key={index} postTitle={post.title}
                             postId={post.id}
                             postCreated={post.createdAt?.toISOString().split("T")[0]!}
                         />

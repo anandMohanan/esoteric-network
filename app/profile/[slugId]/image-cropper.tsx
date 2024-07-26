@@ -161,8 +161,8 @@ export function ImageCropper({
                         </Avatar>
                     </ReactCrop>
                 </div>
-                <DialogFooter className="p-6 pt-0 justify-center ">
-                    <DialogClose asChild>
+                <DialogFooter className=" p-6 pt-0 ">
+                    <DialogClose asChild >
                         <Button
                             size={"sm"}
                             type="reset"
@@ -176,7 +176,7 @@ export function ImageCropper({
                             Cancel
                         </Button>
                     </DialogClose>
-                    <Button type="submit" size={"sm"} className="w-fit" onClick={onCrop} disabled={updateImagePending}>
+                    <Button type="submit" size={"sm"} className="w-fit mb-6 md:mb-0" onClick={onCrop} disabled={updateImagePending}>
                         <CropIcon className="mr-1.5 size-4" />
                         {updateImagePending && <Loader2 className="mr-2 animate-spin" />}
                         Crop

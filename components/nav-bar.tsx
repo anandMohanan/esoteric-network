@@ -118,9 +118,9 @@ export function NavigationMenuComponent() {
                                             Create a new post
                                         </p>
                                     </ListItem>
-                                    <ListItem title="View" href="/view">
+                                    <ListItem title="View" href="/home">
                                         <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
-                                            View your posts
+                                            View the latest posts
                                         </p>
                                     </ListItem>
                                     <Button variant={"outline"} onClick={() => logoutUser()} disabled={logoutPending}>

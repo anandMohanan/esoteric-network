@@ -1,4 +1,4 @@
-import { Section } from "@/components/dividers"
+import { Container, Section } from "@/components/dividers"
 import Link from "next/link"
 
 export const YourPosts = ({ postTitle, postId, postCreated }
@@ -7,7 +7,7 @@ export const YourPosts = ({ postTitle, postId, postCreated }
         <Section className="flex flex-row justify-between w-full">
             <Link
                 href={`/post/${postId}`}
-                className="scroll-m-20 text-lg underline font-semibold tracking-tight">
+                className="scroll-m-20 text-xl underline font-semibold tracking-tight">
                 {postTitle}
             </Link>
             <p className="mt-2 text-gray-500">
