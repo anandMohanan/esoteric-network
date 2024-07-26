@@ -66,6 +66,7 @@ export function NavigationMenuComponent() {
                                             alt="Sisyphus"
                                             width={400}
                                             height={800}
+                                            priority
                                         />
                                         <div className="mb-2 mt-4 text-lg font-medium">
                                             Horizon
@@ -101,7 +102,7 @@ export function NavigationMenuComponent() {
                                                 href={`/profile/${session.user.id}`}
                                             >
                                                 <Image
-                                                    src="/sisyphus.png"
+                                                    src={session.user.profilePicture!}
                                                     alt="Sisyphus"
                                                     width={200}
                                                     height={800}
@@ -123,7 +124,7 @@ export function NavigationMenuComponent() {
                                         </p>
                                     </ListItem>
                                     <Button variant={"outline"} onClick={() => logoutUser()} disabled={logoutPending}>
-                                    {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
+                                        {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
                                     </Button>
                                 </ul>
                             </NavigationMenuContent>
