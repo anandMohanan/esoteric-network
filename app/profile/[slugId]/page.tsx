@@ -18,6 +18,32 @@ interface Props {
         slugId: string
     }
 }
+export async function generateMetadata({ params }: Props) {
+    const user = await db
+        .select({ userId: UserTable.id, username: UserTable.username, profileUrl: UserTable.profileUrl, bio: UserTable.bio })
+        .from(UserTable).where(eq(UserTable.id, params.slugId!))
+    return {
+        title: user[0].username,
+        description: user[0].bio ?? "No bio available.",
+        metadataBase: new URL("https://horizon.vercel.app"),
+        twitter: {
+            card: "summary_large_image",
+        },
+        openGraph: {
+            title: user[0].username,
+            description: user[0].bio ?? "No bio available.",
+            url: `https://horizon.vercel.app/profile/${params.slugId}`,
+            siteName: "Horizon",
+            images: [
+                "https://utfs.io/f/251a43ed-c221-45a0-94a4-2ef0491cc040-b0fwsy.png"
+            ],
+            type: "website",
+        },
+        applicationName: "Horizon",
+        referrer: "origin-when-cross-origin",
+        keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
+    }
+};
 
 export default async function Profile({ params }: Props) {
     const { user: validatedUser } = await validateUser()
