@@ -19,7 +19,8 @@ export const lucia = new Lucia(
         return {
             email: databaseUserAttributes.email,
             username: databaseUserAttributes.username,
-            userId: databaseUserAttributes.id
+            userId: databaseUserAttributes.id,
+            profilePicture: databaseUserAttributes.profileUrl,
 
         }
     },

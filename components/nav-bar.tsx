@@ -66,6 +66,7 @@ export function NavigationMenuComponent() {
                                             alt="Sisyphus"
                                             width={400}
                                             height={800}
+                                            priority
                                         />
                                         <div className="mb-2 mt-4 text-lg font-medium">
                                             Horizon
@@ -93,7 +94,7 @@ export function NavigationMenuComponent() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>{session.user.username}</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className=" gap-3 p-4 md:w-[400px] lg:w-[300px] flex flex-col">
+                                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                                     <li className="row-span-3">
                                         <NavigationMenuLink asChild>
                                             <a
@@ -101,7 +102,7 @@ export function NavigationMenuComponent() {
                                                 href={`/profile/${session.user.id}`}
                                             >
                                                 <Image
-                                                    src="/sisyphus.png"
+                                                    src={session.user.profilePicture!}
                                                     alt="Sisyphus"
                                                     width={200}
                                                     height={800}
@@ -112,6 +113,16 @@ export function NavigationMenuComponent() {
                                             </a>
                                         </NavigationMenuLink>
                                     </li>
+                                    <ListItem title="Create" href="/create">
+                                        <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
+                                            Create a new post
+                                        </p>
+                                    </ListItem>
+                                    <ListItem title="View" href="/home">
+                                        <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
+                                            View the latest posts
+                                        </p>
+                                    </ListItem>
                                     <Button variant={"outline"} onClick={() => logoutUser()} disabled={logoutPending}>
                                         {logoutPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}Logout
                                     </Button>

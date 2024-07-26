@@ -55,7 +55,7 @@ export const SigninForm = () => {
                 title: "Signed in Successfully",
                 variant: "default",
             })
-            router.push("/app")
+            router.push("/home")
         },
     })
 
