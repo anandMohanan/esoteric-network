@@ -32,7 +32,7 @@ export const HomePageContent = () => {
                     </h1>
                     <p className={cn("leading-7 [&:not(:first-child)]:mt-6", secondaryfont.className)}>
                         <Balancer>
-                            Unleash your inner mystic. Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.
+                            Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.
                         </Balancer>
                     </p>
                     <div className="my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
