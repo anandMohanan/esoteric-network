@@ -21,20 +21,20 @@ export const CreatePostAction = async ({ title, content }: { title: string, cont
     }
 }
 
-export const EditPostAction = async ({ title, content }: { title: string, content: string }) => {
+export const EditPostAction = async ({ title, content, postId }: { title: string, content: string, postId: string }) => {
     try {
         if (title === undefined || content === undefined) {
             throw new Error("Title and content are required")
         }
         const { user } = await validateUser()
-        const postId = await db.update(PostTable).set({
+        await db.update(PostTable).set({
             title: title!,
             content: content!,
             userId: user?.id!,
             updatedAt: new Date()
-        }).returning({ postId: PostTable.id });
-        revalidatePath("/post/" + postId[0].postId)
-        return postId[0].postId
+        }).where(eq(PostTable.id, postId))
+        revalidatePath("/post/" + postId)
+        return postId
     } catch (e) {
         throw new Error(e.message)
     }
