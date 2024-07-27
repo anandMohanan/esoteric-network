@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { db } from "@/db"
 import { UserTable } from "@/db/schema/user"
-import { eq } from "drizzle-orm"
+import { desc, eq } from "drizzle-orm"
 import { EditProfile } from "./edit-profile"
 import { PostTable } from "@/db/schema/post"
 import { RenderPosts } from "@/components/render-posts"
@@ -55,6 +55,7 @@ export default async function Profile({ params }: Props) {
     const userPosts = await db
         .select({ title: PostTable.title, id: PostTable.id, createdAt: PostTable.createdAt })
         .from(PostTable).where(eq(PostTable.userId, slugId!))
+        .orderBy(desc(PostTable.createdAt))
     return (
         <Section className="space-y-2">
             <Container className="flex justify-between align-bottom" >

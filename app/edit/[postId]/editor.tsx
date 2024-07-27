@@ -31,8 +31,16 @@ export const EditorComponent = ({ postData }: Props) => {
     const router = useRouter()
     const { mutateAsync: INTERNAL__editPost, isPending } = useMutation({
         mutationFn: async () => {
-            const content = JSON.stringify(value)
-            const postId = await EditPostAction({ title, content: content, postId: postData.id })
+            let content;
+            if (value) {
+                content = JSON.stringify(value)
+            } else {
+                content = postData.content
+            }
+            console.log(content)
+            console.log(postData.id)
+            console.log(title)
+            const postId = await EditPostAction({ title, content, postId: postData.id })
             return postId
         },
         onSuccess(data, variables, context) {
