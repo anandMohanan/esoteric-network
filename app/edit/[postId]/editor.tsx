@@ -29,10 +29,10 @@ export const EditorComponent = ({ postData }: Props) => {
     const [title, setTitle] = useState(postData.title);
     const { toast } = useToast()
     const router = useRouter()
-    const { mutateAsync: INTERNAL__createPost, isPending } = useMutation({
+    const { mutateAsync: INTERNAL__editPost, isPending } = useMutation({
         mutationFn: async () => {
             const content = JSON.stringify(value)
-            const postId = await EditPostAction({ title, content: content })
+            const postId = await EditPostAction({ title, content: content, postId: postData.id })
             return postId
         },
         onSuccess(data, variables, context) {
@@ -69,7 +69,7 @@ export const EditorComponent = ({ postData }: Props) => {
                     initialContent={JSON.parse(postData.content)}
                 />
 
-                <Button onClick={() => INTERNAL__createPost()} className={cn("w-full text-xl font-extrabold", specialfont.className)} disabled={isPending}>
+                <Button onClick={() => INTERNAL__editPost()} className={cn("w-full text-xl font-extrabold", specialfont.className)} disabled={isPending}>
                     {isPending ? <Loader2 className="animate-spin mr-2" /> : "Edit Post"}
                 </Button>
             </div>
