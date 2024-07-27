@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "Horizon",
-        description: "Unleash your inner mystic. Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
+        description: "Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
         url: "https://horizon.vercel.app",
         siteName: "Horizon",
         images: [

@@ -4,14 +4,14 @@ import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
     title: "Horizon",
-    description: "Unleash your inner mystic. Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
+    description: "Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
     metadataBase: new URL("https://horizon.vercel.app"),
     twitter: {
         card: "summary_large_image",
     },
     openGraph: {
         title: "Horizon",
-        description: "Unleash your inner mystic. Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
+        description: "Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
         url: "https://horizon.vercel.app",
         siteName: "Horizon",
         images: [
