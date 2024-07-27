@@ -14,6 +14,7 @@ export const CreatePostAction = async ({ title, content }: { title: string, cont
             content: content!,
             userId: user?.id!
         }).returning({ postId: PostTable.id });
+        revalidatePath("/home")
         return postId[0].postId
     } catch (e) {
         throw new Error(e.message)
@@ -22,6 +23,9 @@ export const CreatePostAction = async ({ title, content }: { title: string, cont
 
 export const EditPostAction = async ({ title, content }: { title: string, content: string }) => {
     try {
+        if (title === undefined || content === undefined) {
+            throw new Error("Title and content are required")
+        }
         const { user } = await validateUser()
         const postId = await db.update(PostTable).set({
             title: title!,
@@ -29,6 +33,7 @@ export const EditPostAction = async ({ title, content }: { title: string, conten
             userId: user?.id!,
             updatedAt: new Date()
         }).returning({ postId: PostTable.id });
+        revalidatePath("/post/" + postId[0].postId)
         return postId[0].postId
     } catch (e) {
         throw new Error(e.message)
