@@ -34,7 +34,6 @@ export const EditPostAction = async ({ title, content, postId }: { title: string
             updatedAt: new Date()
         }).where(eq(PostTable.id, postId))
         revalidatePath("/post/" + postId)
-        return postId
     } catch (e) {
         throw new Error(e.message)
     }
