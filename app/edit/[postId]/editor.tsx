@@ -40,8 +40,7 @@ export const EditorComponent = ({ postData }: Props) => {
             console.log(content)
             console.log(postData.id)
             console.log(title)
-            const postId = await EditPostAction({ title, content, postId: postData.id })
-            return postId
+            await EditPostAction({ title, content, postId: postData.id })
         },
         onSuccess(data, variables, context) {
             toast({
@@ -49,7 +48,7 @@ export const EditorComponent = ({ postData }: Props) => {
                 description: "Your post has been edited",
                 variant: "default",
             });
-            router.push(`/post/${data}`)
+            router.push(`/post/${postData.id}`)
         },
         onError(error, variables, context) {
             toast({
