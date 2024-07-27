@@ -102,7 +102,7 @@ export function NavigationMenuComponent() {
                                                 href={`/profile/${session.user.id}`}
                                             >
                                                 <Image
-                                                    src={session.user.profilePicture!}
+                                                    src={session.user.profilePicture ?? "/sisyphus.png"}
                                                     alt="Sisyphus"
                                                     width={200}
                                                     height={800}

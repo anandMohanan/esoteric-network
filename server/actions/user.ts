@@ -41,7 +41,7 @@ export const SignupUserAction = async ({ formData }: { formData: SIGNUPFORMTYPE 
         const session = await lucia.createSession(userId[0].userId, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-        redirectPath = "/polls"
+        redirectPath = "/home"
     } catch (e) {
         if (e instanceof z.ZodError) {
             throw new Error(zodIssuesFormatter(e.issues));
