@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { HomePageContent } from "./(homepage)/home";
 
 export const metadata: Metadata = {
