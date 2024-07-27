@@ -10,6 +10,7 @@ import { YourPosts } from "../profile/[slugId]/your-posts";
 import { UserTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
 import { RenderPosts } from "@/components/render-posts";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Horizon",

@@ -3,13 +3,14 @@ import { HomePageContent } from "./(homepage)/home";
 
 export const metadata: Metadata = {
     title: "Horizon",
-    description: "Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
+    description: "Horizon is a digital frontier for explorers of the esoteric and extraordinary. Created as a haven for unconventional thinkers, we offer a platform where visionaries, philosophers, and artists converge to share their unique perspectives.",
     metadataBase: new URL("https://horizon.vercel.app"),
     twitter: {
         card: "summary_large_image",
     },
     openGraph: {
         title: "Horizon",
+        description: "Post writings, art, and philosophies. Connect, comment, and support fellow seekers on their spiritual journeys.",
         url: "https://horizon.vercel.app",
         siteName: "Horizon",
         images: [
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
     referrer: "origin-when-cross-origin",
     keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
 };
+
 
 export default function Home() {
     return (
