@@ -10,9 +10,24 @@ export const CreatePostAction = async ({ title, content }: { title: string, cont
     try {
         const { user } = await validateUser()
         const postId = await db.insert(PostTable).values({
-            title: title,
-            content: content,
-            userId: user?.id
+            title: title!,
+            content: content!,
+            userId: user?.id!
+        }).returning({ postId: PostTable.id });
+        return postId[0].postId
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+export const EditPostAction = async ({ title, content }: { title: string, content: string }) => {
+    try {
+        const { user } = await validateUser()
+        const postId = await db.update(PostTable).set({
+            title: title!,
+            content: content!,
+            userId: user?.id!,
+            updatedAt: new Date()
         }).returning({ postId: PostTable.id });
         return postId[0].postId
     } catch (e) {

@@ -5,10 +5,13 @@ import { validateUser } from "@/lib/validateuser";
 import { redirect } from "next/navigation";
 import { EditorComponent } from "./editor";
 import { Metadata } from "next";
+import { db } from "@/db";
+import { PostTable } from "@/db/schema/post";
+import { eq } from "drizzle-orm";
 
 export const metadata: Metadata = {
     title: "Horizon",
-    description: "Create Horizon Post",
+    description: "Edit Horizon Post",
     metadataBase: new URL("https://horizon.vercel.app"),
     twitter: {
         card: "summary_large_image",
@@ -28,14 +31,22 @@ export const metadata: Metadata = {
     keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
 };
 
-export default function CreatePage() {
+
+interface Props {
+    params: {
+        postId: string
+    }
+}
+export default async function EditPage({ params }: Props) {
+    const postId = params.postId
+    const postData = await db.select().from(PostTable).where(eq(PostTable.id, postId))
     const user = validateUser()
     if (!user) {
         redirect("/signin")
     }
     return (
         <Main>
-            <EditorComponent />
+            <EditorComponent postData={postData[0]} />
         </Main>
     )
 }

@@ -1,6 +1,6 @@
 import { Container, Section } from "@/components/dividers"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { db } from "@/db"
 import { UserTable } from "@/db/schema/user"
 import { eq } from "drizzle-orm"
@@ -8,10 +8,11 @@ import { EditProfile } from "./edit-profile"
 import { PostTable } from "@/db/schema/post"
 import { RenderPosts } from "@/components/render-posts"
 import { validateUser } from "@/lib/validateuser"
-import { Trash2 } from "lucide-react"
+import { Edit, Trash2 } from "lucide-react"
 import { DeletePost } from "./delete-post"
 import { cn } from "@/lib/utils"
 import { primaryfont, secondaryfont } from "@/lib/fonts"
+import Link from "next/link"
 
 interface Props {
     params: {
@@ -86,7 +87,16 @@ export default async function Profile({ params }: Props) {
                                     postId={post.id}
                                     postCreated={post.createdAt?.toISOString().split("T")[0]!}
                                 />
-                                {validatedUser?.id == slugId! && <DeletePost postId={post.id} />}
+                                <Container className="flex  justify-normal">
+                                    {validatedUser?.id == slugId! && <DeletePost postId={post.id} />}
+                                    {validatedUser?.id == slugId! &&
+                                        (
+                                            <Link href={`/edit/${post.id}`}
+                                                className={cn(buttonVariants({ variant: "outline", size: "icon" }))}>
+                                                <Edit className="w-4 h-4" />
+
+                                            </Link>)}
+                                </Container>
                             </>
                         )
                     })
