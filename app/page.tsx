@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { HomePageContent } from "./(homepage)/home";
+import { validateUser } from "@/lib/validateuser";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Horizon",
@@ -24,7 +26,11 @@ export const metadata: Metadata = {
 };
 
 
-export default function Home() {
+export default async function Home() {
+    const { user } = await validateUser()
+    if (user) {
+        redirect("/home")
+    }
     return (
         <HomePageContent />
     );
