@@ -8,6 +8,7 @@ import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { NavigationMenuComponent } from "@/components/nav-bar";
 import { SessionProvider } from "@/lib/providers/session";
 import { validateUser } from "@/lib/validateuser";
+import { ThemeProvider } from "@/lib/providers/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -40,14 +41,15 @@ export default async function RootLayout({
     return (
         <Layout>
             <body className={inter.className}>
+            <ThemeProvider attribute="class">
                 <SessionProvider value={session}>
                     <QueryProvider>
                         <NavigationMenuComponent />
                         {children}
                     </QueryProvider>
                     <Toaster />
-                    <SonnerToaster />
                 </SessionProvider>
+                </ThemeProvider>
             </body>
         </Layout>
     );

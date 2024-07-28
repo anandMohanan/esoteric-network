@@ -22,6 +22,7 @@ import { Button } from "./ui/button"
 import { Loader2 } from "lucide-react"
 import { primaryfont, secondaryfont } from "@/lib/fonts"
 import { useRouter } from "next/navigation"
+import { ThemeToggle } from "./theme-toggle"
 
 
 export function NavigationMenuComponent() {
@@ -140,6 +141,7 @@ export function NavigationMenuComponent() {
                     </NavigationMenuItem>
                 )}
             </NavigationMenuList>
+            <ThemeToggle />
         </NavigationMenu>
     )
 }
