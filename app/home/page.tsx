@@ -49,8 +49,8 @@ export default async function HomePage() {
         <Main>
             <Container className="flex flex-col md:flex-row items-center justify-between align-middle">
                 <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", primaryfont.className)}>
-                <Balancer>
-                    Latest Posts
+                    <Balancer>
+                        Latest Posts
                     </Balancer>
                 </h1>
                 <Link href="/create" className={cn("not-prose text-2xl mb-6 flex w-fit", buttonVariants({ variant: "outline" }), specialfont.className)}>

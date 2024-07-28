@@ -1,4 +1,3 @@
-
 import { Container, Section } from "@/components/dividers";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Book, Camera } from "lucide-react";
@@ -11,7 +10,6 @@ import { cn } from "@/lib/utils";
 import { primaryfont, secondaryfont, specialfont } from "@/lib/fonts";
 import { validateUser } from "@/lib/validateuser";
 
-
 export const HomePageContent = async () => {
     const { user } = await validateUser()
     return (
@@ -20,12 +18,19 @@ export const HomePageContent = async () => {
                 <div className="flex flex-col items-center text-center">
                     {!user &&
                         <Link
-                            className={cn("not-prose text-2xl mb-6 flex w-fit", buttonVariants({  variant: "outline" }), specialfont.className)}
+                            className={cn("not-prose text-2xl mb-6 flex w-fit", buttonVariants({ variant: "link" }), specialfont.className)}
                             href="/signin"
-
                         >
-
                             Join the Awakening  <Book className="ml-2 w-4" />
+                        </Link>
+                    }
+                    {user &&
+                        <Link
+                            className={cn("not-prose text-4xl mb-6 font-[700px] flex w-fit",
+                                buttonVariants({ variant: "link" }), specialfont.className)}
+                            href="/home"
+                        >
+                            View the latest creations <Book className="ml-2 w-4" />
                         </Link>
                     }
 

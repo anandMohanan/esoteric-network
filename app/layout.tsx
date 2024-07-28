@@ -41,14 +41,14 @@ export default async function RootLayout({
     return (
         <Layout>
             <body className={inter.className}>
-            <ThemeProvider attribute="class">
-                <SessionProvider value={session}>
-                    <QueryProvider>
-                        <NavigationMenuComponent />
-                        {children}
-                    </QueryProvider>
-                    <Toaster />
-                </SessionProvider>
+                <ThemeProvider attribute="class">
+                    <SessionProvider value={session}>
+                        <QueryProvider>
+                            <NavigationMenuComponent />
+                            {children}
+                        </QueryProvider>
+                        <Toaster />
+                    </SessionProvider>
                 </ThemeProvider>
             </body>
         </Layout>
