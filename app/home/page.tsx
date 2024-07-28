@@ -1,7 +1,7 @@
 import { Container, Main } from "@/components/dividers";
 import { db } from "@/db";
 import { PostTable } from "@/db/schema/post";
-import { primaryfont } from "@/lib/fonts";
+import { primaryfont, specialfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { validateUser } from "@/lib/validateuser";
 import { desc } from "drizzle-orm";
@@ -11,6 +11,8 @@ import { UserTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
 import { RenderPosts } from "@/components/render-posts";
 import { Metadata } from "next";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Horizon",
@@ -44,9 +46,14 @@ export default async function HomePage() {
 
     return (
         <Main>
-            <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", primaryfont.className)}>
-                Latest Posts
-            </h1>
+            <Container className="flex justify-between align-middle">
+                <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", primaryfont.className)}>
+                    Latest Posts
+                </h1>
+                <Link href="/create" className={cn("not-prose text-2xl mb-6 flex w-fit", buttonVariants({ variant: "outline" }), specialfont.className)}>
+                    Create your own post
+                </Link>
+            </Container>
             <Container>
                 {
                     latestPosts.map((post, index) => {

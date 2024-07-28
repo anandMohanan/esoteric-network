@@ -67,3 +67,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+::selection {
+    background: yellow;
+    color: black;
+}
+
+/* For webkit browsers */
+::-moz-selection {
+    background: yellow;
+    color: black;
+}

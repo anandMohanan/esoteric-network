@@ -47,7 +47,7 @@ export const EditorComponent = () => {
             <div className="flex flex-col p-8 w-[80%] mx-auto gap-6">
                 <Input placeholder="Enter your Title"
                     onChange={(e) => setTitle(e.target.value)}
-                    className={cn("text-4xl h-[60px] border-none underline outline-none focus:outline-none focus:ring-0 focus:ring-transparent", primaryfont.className)}
+                    className={cn("text-xl md:text-4xl h-[60px] border-none underline outline-none focus:outline-none focus:ring-0 focus:ring-transparent", primaryfont.className)}
                 />
                 <Label className={cn("text-xl font-bold", secondaryfont.className)}>Content:</Label>
                 <MinimalTiptapEditor
