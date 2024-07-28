@@ -13,6 +13,7 @@ import { RenderPosts } from "@/components/render-posts";
 import { Metadata } from "next";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 
 export const metadata: Metadata = {
     title: "Horizon",
@@ -46,9 +47,11 @@ export default async function HomePage() {
 
     return (
         <Main>
-            <Container className="flex justify-between align-middle">
+            <Container className="flex flex-col md:flex-row items-center justify-between align-middle">
                 <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center", primaryfont.className)}>
+                <Balancer>
                     Latest Posts
+                    </Balancer>
                 </h1>
                 <Link href="/create" className={cn("not-prose text-2xl mb-6 flex w-fit", buttonVariants({ variant: "outline" }), specialfont.className)}>
                     Create your own post
