@@ -18,7 +18,6 @@ export const EditorComponent = () => {
     const [value, setValue] = useState<string>();
     const [title, setTitle] = useState("");
     const { toast } = useToast()
-    console.log(value)
     const router = useRouter()
     const { mutateAsync: INTERNAL__createPost, isPending } = useMutation({
         mutationFn: async () => {

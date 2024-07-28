@@ -32,16 +32,11 @@ export const EditorComponent = ({ postData }: Props) => {
     const { mutateAsync: INTERNAL__editPost, isPending } = useMutation({
         mutationFn: async () => {
             let content;
-            console.log(value)
-            console.log(postData.content)
             if (value) {
                 content = JSON.stringify(value)
             } else {
                 content = postData.content
             }
-            console.log(content)
-            console.log(postData.id)
-            console.log(title)
             await EditPostAction({ title, content, postId: postData.id })
         },
         onSuccess(data, variables, context) {
