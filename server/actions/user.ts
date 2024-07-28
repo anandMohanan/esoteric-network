@@ -31,13 +31,11 @@ export const SignupUserAction = async ({ formData }: { formData: SIGNUPFORMTYPE 
         if (hasEmail.length > 0) {
             throw new Error("Email already exists");
         }
-        console.log(hasEmail, hasUserName)
         const userId = await db.insert(UserTable).values({
             username: userName,
             email: email,
             password: hashedPassword
         }).returning({ userId: UserTable.id });
-        console.log(userId)
         const session = await lucia.createSession(userId[0].userId, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
@@ -46,7 +44,6 @@ export const SignupUserAction = async ({ formData }: { formData: SIGNUPFORMTYPE 
         if (e instanceof z.ZodError) {
             throw new Error(zodIssuesFormatter(e.issues));
         } else {
-            console.log(e)
             throw new Error(e.message)
         }
     } finally {
@@ -60,21 +57,17 @@ export const SignupUserAction = async ({ formData }: { formData: SIGNUPFORMTYPE 
 export const SigninUserAction = async ({ formData }: { formData: SIGNINFORMTYPE }) => {
     let redirectPath: string | null = null
     try {
-        console.log(formData)
         const { email, password } = SIGNINSCHEMA.parse(formData);
-        console.log(email, password)
         const existingUser = await db.select().from(UserTable).where(eq(UserTable.email, email));
         if (existingUser.length === 0) {
             throw new Error("User not found");
         }
-        console.log(existingUser)
         const validPassword = await verify(existingUser[0].password, password, {
             memoryCost: 19456,
             timeCost: 2,
             outputLen: 32,
             parallelism: 1
         });
-        console.log(validPassword)
         if (!validPassword) {
             throw new Error("Wrong password");
         }

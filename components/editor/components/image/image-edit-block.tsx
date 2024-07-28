@@ -61,7 +61,6 @@ const ImageEditBlock = ({ editor, className, close, ...props }: ImageEditBlockPr
             }
 
             const data = await response.json();
-            console.log('File uploaded successfully:', data);
             // Handle successful upload, e.g., update the editor with the image URL
             const src = data.url;  // Assuming the API response includes the image URL
             editor.chain().setImage({ src }).focus().run();

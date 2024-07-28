@@ -90,7 +90,6 @@ const MinimalTiptapEditor = forwardRef<HTMLDivElement, MinimalTiptapProps>(
                     const parsedContent = JSON.parse(initialContent);
                     editor.commands.setContent(parsedContent);
                 } catch (error) {
-                    console.error('Error parsing initial content', error);
                 }
             }
         }, [editor, initialContent]);
