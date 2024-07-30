@@ -14,7 +14,7 @@ export const EmailTemplate = () => {
                         size={"sm"}
                         variant={"outline"}
                     >
-                        <a className="not-prose" href="https://horizon.vercel.app">
+                        <a className="not-prose" href="https://www.esotericnetwork.site/">
                             Visit Horizon
                         </a>
                     </Button>

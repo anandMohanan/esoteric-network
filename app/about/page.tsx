@@ -6,23 +6,23 @@ import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 
 export const metadata: Metadata = {
-    title: "Horizon",
-    description: "Horizon is a digital frontier for explorers of the esoteric and extraordinary. Created as a haven for unconventional thinkers, we offer a platform where visionaries, philosophers, and artists converge to share their unique perspectives.",
-    metadataBase: new URL("https://horizon.vercel.app"),
+    title: "Esoteric network",
+    description: "Esoteric network is a digital frontier for explorers of the esoteric and extraordinary. Created as a haven for unconventional thinkers, we offer a platform where visionaries, philosophers, and artists converge to share their unique perspectives.",
+    metadataBase: new URL("https://www.esotericnetwork.site/"),
     twitter: {
         card: "summary_large_image",
     },
     openGraph: {
-        title: "Horizon",
-        description: "About Horizon",
-        url: "https://horizon.vercel.app",
-        siteName: "Horizon",
+        title: "Esoteric network",
+        description: "About Esoteric network",
+        url: "https://www.esotericnetwork.site/",
+        siteName: "Esoteric network",
         images: [
             "https://utfs.io/f/251a43ed-c221-45a0-94a4-2ef0491cc040-b0fwsy.png"
         ],
         type: "website",
     },
-    applicationName: "Horizon",
+    applicationName: "Esoteric network",
     referrer: "origin-when-cross-origin",
     keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
 };
@@ -38,7 +38,7 @@ export default function About() {
                 <p className={cn("max-w-[800px] mx-auto text-2xl  leading-7",
                     "text-center [&:not(:first-child)]:mt-6", secondaryfont.className)}>
                     <Balancer>
-                        Horizon is a digital frontier for explorers of the
+                        Esoteric network is a digital frontier for explorers of the
                         esoteric and extraordinary. Created as a haven
                         for unconventional thinkers, we offer a platform where
                         visionaries, philosophers, and artists
@@ -50,7 +50,7 @@ export default function About() {
                     and the importance of bridging ancient knowledge with contemporary insights.
                 </blockquote>
                 <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-                    Our mission is to expand the boundaries of thought by fostering a community that celebrates diverse spiritual and philosophical expressions. At Horizon, you can:
+                    Our mission is to expand the boundaries of thought by fostering a community that celebrates diverse spiritual and philosophical expressions. At Esoteric network, you can:
                 </h2>
                 <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
                     <li>Share your esoteric writings, artwork, and reflections</li>
@@ -59,12 +59,12 @@ export default function About() {
                     <li>Support creators through likes and donations</li>
                 </ul>
                 <p className="leading-7 [&:not(:first-child)]:mt-6">
-                    Join us at the Horizon, where each contribution illuminates new paths of understanding.
+                    Join us at the Esoteric network, where each contribution illuminates new paths of understanding.
                 </p>
                 <Image
                     className="mx-auto m-10"
                     src="/flower.png"
-                    alt="Horizon"
+                    alt="Esoteric Network"
                     width={600}
                     height={800}
                 />

@@ -36,7 +36,7 @@ export const HomePageContent = async () => {
 
                     <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl !mb-0", primaryfont.className)}>
                         <Balancer>
-                            Horizon: Share Your Esoteric Essence
+                            Share Your Esoteric Essence
                         </Balancer>
                     </h1>
                     <p className={cn("leading-7 [&:not(:first-child)]:mt-6", secondaryfont.className)}>

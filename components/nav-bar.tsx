@@ -53,7 +53,7 @@ export function NavigationMenuComponent() {
         <NavigationMenu className={cn("w-full p-6  ", primaryfont.className)}>
             <NavigationMenuList className="flex min-w-full justify-between">
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Horizon</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>MMind</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
@@ -70,16 +70,16 @@ export function NavigationMenuComponent() {
                                             priority
                                         />
                                         <div className="mb-2 mt-4 text-lg font-medium">
-                                            Horizon
+                                            Esoteric Network
                                         </div>
                                     </a>
                                 </NavigationMenuLink>
                             </li>
                             <ListItem title="About" href="/about">
                                 <p className={cn("text-sm  text-muted-foreground", secondaryfont.className)}>
-                                    Horizon is a platform for sharing esoteric thoughts, ideas,
+                                    Esoteric Network is a platform for sharing esoteric thoughts, ideas,
                                     and writings. It is a place where you can connect with
-                                    others who share your interests and passions. Whether you are a seasoned esoteric enthusiast or a newcomer to the world of esoteric thought, Horizon is the perfect place
+                                    others who share your interests and passions. Whether you are a seasoned esoteric enthusiast or a newcomer to the world of esoteric thought, this is the perfect place
                                 </p>
                             </ListItem>
                             <ListItem title="Created By" className="cursor-cell" >

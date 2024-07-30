@@ -20,20 +20,20 @@ export async function generateMetadata({ params }: PostPageProps) {
     const postData = await db.select().from(PostTable).where(eq(PostTable.id, params.postId))
     return {
         title: postData[0].title,
-        metadataBase: new URL("https://horizon.vercel.app"),
+        metadataBase: new URL("https://www.esotericnetwork.site/"),
         twitter: {
             card: "summary_large_image",
         },
         openGraph: {
             title: postData[0].title,
-            url: `https://horizon.vercel.app/post/${postData[0].id}`,
-            siteName: "Horizon",
+            url: `https://www.esotericnetwork.site/post/${postData[0].id}`,
+            siteName: "Esoteric Network",
             images: [
                 "https://utfs.io/f/251a43ed-c221-45a0-94a4-2ef0491cc040-b0fwsy.png"
             ],
             type: "website",
         },
-        applicationName: "Horizon",
+        applicationName: "Esoteric Network",
         referrer: "origin-when-cross-origin",
         keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
     }

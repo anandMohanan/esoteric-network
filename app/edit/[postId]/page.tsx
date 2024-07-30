@@ -10,23 +10,23 @@ import { PostTable } from "@/db/schema/post";
 import { eq } from "drizzle-orm";
 
 export const metadata: Metadata = {
-    title: "Horizon",
-    description: "Edit Horizon Post",
-    metadataBase: new URL("https://horizon.vercel.app"),
+    title: "Esoteric Network",
+    description: "Edit Esoteric Network Post",
+    metadataBase: new URL("https://www.esotericnetwork.site/"),
     twitter: {
         card: "summary_large_image",
     },
     openGraph: {
-        title: "Horizon",
-        description: "About Horizon",
-        url: "https://horizon.vercel.app",
-        siteName: "Horizon",
+        title: "Esoteric Network",
+        description: "About Esoteric Network",
+        url: "https://www.esotericnetwork.site/",
+        siteName: "Esoteric Network",
         images: [
             "https://utfs.io/f/251a43ed-c221-45a0-94a4-2ef0491cc040-b0fwsy.png"
         ],
         type: "website",
     },
-    applicationName: "Horizon",
+    applicationName: "Esoteric Network",
     referrer: "origin-when-cross-origin",
     keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
 };
