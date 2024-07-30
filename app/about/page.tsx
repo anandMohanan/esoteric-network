@@ -1,4 +1,5 @@
 import { Main, Section } from "@/components/dividers";
+import { Separator } from "@/components/ui/separator";
 import { primaryfont, secondaryfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
@@ -30,12 +31,12 @@ export const metadata: Metadata = {
 export default function About() {
     return (
         <Main>
-            <Section className="max-w-[800px] mx-auto">
+            <Section className="max-w-[800px] mx-auto ">
                 <h1 className={cn("scroll-m-20 underline mb-10 text-center text-4xl font-extrabold tracking-tight lg:text-5xl"
                     , primaryfont.className)}>
                     About this project:
                 </h1>
-                <p className={cn("max-w-[800px] mx-auto text-2xl  leading-7",
+                <p className={cn("max-w-[800px] mx-auto md:text-2xl text-lg p-2 md:p-0  leading-7",
                     "text-center [&:not(:first-child)]:mt-6", secondaryfont.className)}>
                     <Balancer>
                         Esoteric network is a digital frontier for explorers of the
@@ -49,7 +50,8 @@ export default function About() {
                     We believe in the transformative power of collective wisdom
                     and the importance of bridging ancient knowledge with contemporary insights.
                 </blockquote>
-                <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                <Separator className="m-4" />
+                <h2 className="mt-10 scroll-m-20 border-b p-4 md:p-0 pb-2 text-xl md:text-3xl font-semibold tracking-tight transition-colors first:mt-0">
                     Our mission is to expand the boundaries of thought by fostering a community that celebrates diverse spiritual and philosophical expressions. At Esoteric network, you can:
                 </h2>
                 <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
@@ -58,7 +60,7 @@ export default function About() {
                     <li>Engage in meaningful dialogues through comments</li>
                     <li>Support creators through likes and donations</li>
                 </ul>
-                <p className="leading-7 [&:not(:first-child)]:mt-6">
+                <p className="leading-7 [&:not(:first-child)]:mt-6 p-4 md:p-0">
                     Join us at the Esoteric network, where each contribution illuminates new paths of understanding.
                 </p>
                 <Image
