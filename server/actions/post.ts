@@ -1,9 +1,9 @@
 "use server"
 
 import { db } from "@/db";
-import { PostTable } from "@/db/schema/post";
+import { LikeTable, PostTable } from "@/db/schema/post";
 import { validateUser } from "@/lib/validateuser";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export const CreatePostAction = async ({ title, content }: { title: string, content: string }) => {
@@ -52,6 +52,42 @@ export const DeletePostAction = async ({ postId }: { postId: string }) => {
         await db.delete(PostTable).where(eq(PostTable.id, postId))
         revalidatePath("/profile/" + user?.id)
         revalidatePath("/home")
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+export const ModifyLikeAction = async ({ postId }: { postId: string }) => {
+    try {
+        const { user } = await validateUser()
+        const alreadyLiked =
+            await db.select({ isLiked: LikeTable.isLiked }).from(LikeTable).where(eq(LikeTable.postId, postId))
+        if (alreadyLiked[0] === undefined) {
+            await db.insert(LikeTable).values({
+                postId: postId,
+                userId: user?.id!,
+                isLiked: true,
+                createdAt: new Date()
+            })
+            revalidatePath("/post/" + postId)
+            return
+        }
+        if (alreadyLiked[0].isLiked) {
+            await db.update(LikeTable).set({
+                isLiked: false,
+                updatedAt: new Date()
+            }).where(and(eq(LikeTable.postId, postId), eq(LikeTable.userId, user?.id!)))
+            revalidatePath("/post/" + postId)
+            return
+        }
+        if (alreadyLiked[0].isLiked === false) {
+            await db.update(LikeTable).set({
+                isLiked: true,
+                updatedAt: new Date()
+            }).where(and(eq(LikeTable.postId, postId), eq(LikeTable.userId, user?.id!)))
+            revalidatePath("/post/" + postId)
+            return
+        }
     } catch (e) {
         throw new Error(e.message)
     }

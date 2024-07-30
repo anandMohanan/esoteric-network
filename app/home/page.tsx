@@ -1,10 +1,10 @@
 import { Container, Main } from "@/components/dividers";
 import { db } from "@/db";
-import { PostTable } from "@/db/schema/post";
+import { LikeTable, PostTable } from "@/db/schema/post";
 import { primaryfont, specialfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { validateUser } from "@/lib/validateuser";
-import { desc } from "drizzle-orm";
+import { count, desc } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { YourPosts } from "../profile/[slugId]/your-posts";
 import { UserTable } from "@/db/schema/user";
