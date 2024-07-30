@@ -14,6 +14,9 @@ import { Metadata } from "next";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+import { Suspense } from "react";
+import { Loader, Loader2 } from "lucide-react";
+import { PaginationComponent } from "./pagination";
 
 export const metadata: Metadata = {
     title: "Esoteric Network",
@@ -39,13 +42,18 @@ export const metadata: Metadata = {
         "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
 };
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: {
+    searchParams?: { page?: string }
+}) {
+    const currentPage = Number(searchParams?.page) || 1
     const user = validateUser()
     if (!user) {
         redirect("/signin")
     }
     const latestPosts = await db.select().from(PostTable)
-        .orderBy(desc(PostTable.createdAt))
+        .orderBy(desc(PostTable.createdAt)).limit(5).offset((currentPage - 1) * 5)
+    const totalPosts = await db.select({ count: count() }).from(PostTable).execute()
+    const totalPages = Math.ceil(totalPosts[0].count / 5)
 
     return (
         <Main>
@@ -59,16 +67,21 @@ export default async function HomePage() {
                     Create your own post
                 </Link>
             </Container>
-            <Container>
-                {
-                    latestPosts.map((post, index) => {
-                        return <RenderPosts key={index} postTitle={post.title}
-                            postId={post.id}
-                            postCreated={post.createdAt?.toISOString().split("T")[0]!}
-                        />
-                    })
+            <Suspense key={currentPage} fallback={<Loader2 className="m-auto w-10 h-10 animate-spin" />}>
+                <Container>
+                    {
+                        latestPosts.map((post, index) => {
+                            return <RenderPosts key={index} postTitle={post.title}
+                                postId={post.id}
+                                postCreated={post.createdAt?.toISOString().split("T")[0]!}
+                            />
+                        })
 
-                }
+                    }
+                </Container>
+            </Suspense>
+            <Container>
+                <PaginationComponent totalPages={totalPages} />
             </Container>
         </Main>
     )
