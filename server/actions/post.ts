@@ -49,6 +49,7 @@ export const DeletePostAction = async ({ postId }: { postId: string }) => {
         if (post[0] === undefined) {
             throw new Error("Post not found")
         }
+        await db.delete(LikeTable).where(eq(LikeTable.postId, postId));
         await db.delete(PostTable).where(eq(PostTable.id, postId))
         revalidatePath("/profile/" + user?.id)
         revalidatePath("/home")
