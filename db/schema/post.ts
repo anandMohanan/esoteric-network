@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { UserTable } from "./user";
 
 export const PostTable = pgTable("post", {
@@ -15,4 +15,19 @@ export const PostTable = pgTable("post", {
         mode: "date"
     }).defaultNow(),
     userId: text("user_id").notNull().references(() => UserTable.id)
+});
+
+export const LikeTable = pgTable("like", {
+    id: text("id").notNull().primaryKey().$defaultFn(() => createId()),
+    postId: text("post_id").notNull().references(() => PostTable.id),
+    userId: text("user_id").notNull().references(() => UserTable.id),
+    isLiked: boolean("is_liked").notNull().default(true),
+    createdAt: timestamp("created_at", {
+        withTimezone: true,
+        mode: "date"
+    }).defaultNow(),
+    updatedAt: timestamp("updated_at", {
+        withTimezone: true,
+        mode: "date"
+    }).defaultNow()
 });

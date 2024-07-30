@@ -4,8 +4,8 @@ interface PostPageProps {
     }
 }
 import { db } from "@/db"
-import { PostTable } from "@/db/schema/post";
-import { eq } from "drizzle-orm";
+import { LikeTable, PostTable } from "@/db/schema/post";
+import { and, count, eq } from "drizzle-orm";
 import { PostContent } from "./post-content";
 import { UserTable } from "@/db/schema/user";
 import { Container, Section } from "@/components/dividers";
@@ -14,25 +14,26 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { primaryfont, secondaryfont } from "@/lib/fonts";
 import { Metadata } from "next";
+import { validateUser } from "@/lib/validateuser";
 
 export async function generateMetadata({ params }: PostPageProps) {
     const postData = await db.select().from(PostTable).where(eq(PostTable.id, params.postId))
     return {
         title: postData[0].title,
-        metadataBase: new URL("https://horizon.vercel.app"),
+        metadataBase: new URL("https://www.esotericnetwork.site/"),
         twitter: {
             card: "summary_large_image",
         },
         openGraph: {
             title: postData[0].title,
-            url: `https://horizon.vercel.app/post/${postData[0].id}`,
-            siteName: "Horizon",
+            url: `https://www.esotericnetwork.site/post/${postData[0].id}`,
+            siteName: "Esoteric Network",
             images: [
                 "https://utfs.io/f/251a43ed-c221-45a0-94a4-2ef0491cc040-b0fwsy.png"
             ],
             type: "website",
         },
-        applicationName: "Horizon",
+        applicationName: "Esoteric Network",
         referrer: "origin-when-cross-origin",
         keywords: ["horizon", "esoteric", "writing", "art", "philosophy", "spirituality", "mysticism", "philosopher", "writer", "artist", "poet", "philosophies", "esotericism", "mysticism", "spiritual", "writings", "art", "poem"]
     }
@@ -40,11 +41,21 @@ export async function generateMetadata({ params }: PostPageProps) {
 
 export default async function PostPage({ params }: PostPageProps) {
     const { postId } = params
+    const { user: validatedUser } = await validateUser()
     const postData = await db.select().from(PostTable).where(eq(PostTable.id, postId))
     const content = JSON.parse(postData[0].content)
     const user = await db.select({ userId: UserTable.id, username: UserTable.username, profileUrl: UserTable.profileUrl })
         .from(UserTable).where(eq(UserTable.id, postData[0].userId))
 
+    const likeCount = await db.select({ count: count() })
+        .from(LikeTable)
+        .where(and(eq(LikeTable.postId, postId), eq(LikeTable.isLiked, true)))
+    const isLiked = await db.select({ isLiked: LikeTable.isLiked })
+        .from(LikeTable)
+        .where(and(eq(LikeTable.postId, postId), eq(LikeTable.userId, validatedUser?.id!)))
+    if (isLiked[0] === undefined) {
+        isLiked[0] = { isLiked: false }
+    }
     return (
         <Section>
 
@@ -59,7 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 </div>
                 <div className="md:flex md:flex-col flex flex-row items-center align-middle md:gap-0 gap-4">
                     <Avatar>
-                        <AvatarImage src={user[0].profileUrl ?? ""} alt={user[0].username} />
+                        <AvatarImage src={user[0]?.profileUrl ?? ""} alt={user[0].username} />
                         <AvatarFallback>
                             {user[0].username[0]}
                         </AvatarFallback>
@@ -69,7 +80,7 @@ export default async function PostPage({ params }: PostPageProps) {
                     </Link>
                 </div>
             </Container>
-            <PostContent content={content} />
+            <PostContent content={content} likeCount={likeCount[0].count} postId={postId} isLiked={isLiked[0].isLiked} />
         </Section>
     )
 }
