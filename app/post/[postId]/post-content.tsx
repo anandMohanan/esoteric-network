@@ -5,7 +5,7 @@ import { MinimalTiptapEditor } from "@/components/editor";
 import { Button } from "@/components/ui/button";
 import { primaryfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, Heart, Loader } from "lucide-react";
+import { ChevronLeftIcon, Heart, Loader, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { LikeComponent } from "./like-compontent";
@@ -36,7 +36,7 @@ export const PostContent = ({ content, likeCount, postId, isLiked }: PostContent
                 </Button>
                 <div className="flex gap-2 items-center">
                     <Button onClick={() => modifyLike()} variant={"ghost"} size={"icon"}>
-                        {isModifyingLike ? <Loader className="h-5 w-5 animate-spin" /> :
+                        {isModifyingLike ? <Loader2 className="h-5 w-5 animate-spin" /> :
                             <Heart className={cn(
                                 isLiked ? "text-green-500" : "",
                             )} />
