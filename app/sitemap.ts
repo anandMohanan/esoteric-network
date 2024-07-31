@@ -13,12 +13,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
         url: "https://www.esotericnetwork.site/home",
         lastModified: new Date(),
-        priority: 0.5
+        priority: 0.9
     },
     {
         url: "https://www.esotericnetwork.site/create",
         lastModified: new Date(),
         priority: 0.7
+    },
+    {
+        url: "https://www.esotericnetwork.site/signin",
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8
+    },
+    {
+        url: "https://www.esotericnetwork.site/signup",
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8
     },
 
     ]
