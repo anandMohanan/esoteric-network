@@ -47,7 +47,7 @@ export const HomePageContent = async () => {
                                     </TooltipTrigger>
                                     <TooltipContent>
                                         <p className="w-[500px] text-xl">
-                                            "Esoteric" means something that is understood or intended for only a small number of people with specialized knowledge or interest. It often refers to ideas, knowledge, or practices that are obscure or not widely known.
+                                            Esoteric means something that is understood or intended for only a small number of people with specialized knowledge or interest. It often refers to ideas, knowledge, or practices that are obscure or not widely known.
                                         </p>
                                     </TooltipContent>
                                 </Tooltip>
