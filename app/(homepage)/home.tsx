@@ -9,6 +9,7 @@ import Sisyphus from "../../public/sisyphus.png";
 import { cn } from "@/lib/utils";
 import { primaryfont, secondaryfont, specialfont } from "@/lib/fonts";
 import { validateUser } from "@/lib/validateuser";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const HomePageContent = async () => {
     const { user } = await validateUser()
@@ -36,7 +37,23 @@ export const HomePageContent = async () => {
 
                     <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl !mb-0", primaryfont.className)}>
                         <Balancer>
-                            Share Your Esoteric Essence
+                            Share Your {" "}
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <span className="underline decoration-wavy decoration-cyan-500">
+                                            Esoteric
+                                        </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p className="w-[500px] text-xl">
+                                            Esoteric means something that is understood or intended for only a small number of people with specialized knowledge or interest. It often refers to ideas, knowledge, or practices that are obscure or not widely known.
+                                        </p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                            {" "}
+                            Essence
                         </Balancer>
                     </h1>
                     <p className={cn("leading-7 [&:not(:first-child)]:mt-6", secondaryfont.className)}>
