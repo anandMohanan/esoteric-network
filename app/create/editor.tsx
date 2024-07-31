@@ -43,6 +43,7 @@ export const EditorComponent = () => {
     })
     return (
         <Section className=" mx-auto">
+
             <div className="flex flex-col p-8 w-[80%] mx-auto gap-6">
                 <Input placeholder="Enter your Title"
                     onChange={(e) => setTitle(e.target.value)}
