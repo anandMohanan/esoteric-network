@@ -53,7 +53,7 @@ export function NavigationMenuComponent() {
         <NavigationMenu className={cn("w-full p-6  ", primaryfont.className)}>
             <NavigationMenuList className="flex min-w-full justify-between">
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>EN</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>E{" "}N</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
@@ -67,7 +67,7 @@ export function NavigationMenuComponent() {
                                             alt="Sisyphus"
                                             width={400}
                                             height={800}
-                                            priority
+                                            loading="lazy"
                                         />
                                         <div className="mb-2 mt-4 text-lg font-medium">
                                             Esoteric Network
@@ -107,6 +107,7 @@ export function NavigationMenuComponent() {
                                                     alt="Sisyphus"
                                                     width={200}
                                                     height={800}
+                                                    loading="lazy"
                                                 />
                                                 <div className="mb-2 mt-4 text-lg font-medium">
                                                     Profile

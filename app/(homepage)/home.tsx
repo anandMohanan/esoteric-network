@@ -1,6 +1,6 @@
 import { Container, Section } from "@/components/dividers";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowRight, Book, Camera } from "lucide-react";
+import { ArrowRight, Book, Camera, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { HomeForm } from "./home-form";
@@ -67,8 +67,9 @@ export const HomePageContent = async () => {
                             src={Sisyphus}
                             width={1920}
                             height={1080}
-                            alt="hero image"
+                            alt="Sisyphus image"
                             placeholder="blur"
+                            priority
                         />
 
                     </div>

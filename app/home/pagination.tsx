@@ -37,6 +37,9 @@ export const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
         }
         return items;
     };
+    if (totalPages <= 1) {
+        return null;
+    }
     return (
         <Pagination>
             <PaginationContent>
