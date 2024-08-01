@@ -67,7 +67,7 @@ export function NavigationMenuComponent() {
                                             alt="Sisyphus"
                                             width={400}
                                             height={800}
-                                            priority
+                                            loading="lazy"
                                         />
                                         <div className="mb-2 mt-4 text-lg font-medium">
                                             Esoteric Network
@@ -107,6 +107,7 @@ export function NavigationMenuComponent() {
                                                     alt="Sisyphus"
                                                     width={200}
                                                     height={800}
+                                                    loading="lazy"
                                                 />
                                                 <div className="mb-2 mt-4 text-lg font-medium">
                                                     Profile
