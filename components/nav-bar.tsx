@@ -53,7 +53,7 @@ export function NavigationMenuComponent() {
         <NavigationMenu className={cn("w-full p-6  ", primaryfont.className)}>
             <NavigationMenuList className="flex min-w-full justify-between">
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>EN</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>E{" "}N</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
