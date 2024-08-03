@@ -80,7 +80,11 @@ export default async function PostPage({ params }: PostPageProps) {
                     </Link>
                 </div>
             </Container>
-            <PostContent content={content} likeCount={likeCount[0].count} postId={postId} isLiked={isLiked[0].isLiked} />
+            <PostContent content={content} likeCount={likeCount[0].count} postId={postId}
+                isLiked={isLiked[0].isLiked}
+                validatedUser={validatedUser?.id}
+                postUserId={postData[0].userId}
+            />
         </Section>
     )
 }
