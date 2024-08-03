@@ -13,6 +13,7 @@ import { DeletePost } from "./delete-post"
 import { cn } from "@/lib/utils"
 import { primaryfont, secondaryfont } from "@/lib/fonts"
 import Link from "next/link"
+import React from "react"
 
 interface Props {
     params: {
@@ -83,7 +84,7 @@ export default async function Profile({ params }: Props) {
                 {userPosts.length > 0 &&
                     userPosts.map((post, index) => {
                         return (
-                            <>
+                            <React.Fragment key={index}>
                                 <RenderPosts key={index} postTitle={post.title}
                                     postId={post.id}
                                     postCreated={post.createdAt?.toISOString().split("T")[0]!}
@@ -98,7 +99,7 @@ export default async function Profile({ params }: Props) {
 
                                             </Link>)}
                                 </Container>
-                            </>
+                            </React.Fragment>
                         )
                     })
                 }
