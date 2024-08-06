@@ -5,7 +5,7 @@ import { MinimalTiptapEditor } from "@/components/editor";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { primaryfont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, Heart, Loader, Loader2 } from "lucide-react";
+import { ChevronLeftIcon, DollarSign, DollarSignIcon, Heart, Loader, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { LikeComponent } from "./like-compontent";
@@ -46,6 +46,19 @@ export const PostContent = ({ content, likeCount, postId, isLiked,
                     }))}>
                         Edit
                     </Link>
+                }
+                {
+                    validatedUser === postUserId &&
+                    <Button
+                        variant={"outline"}
+                        disabled={true}
+                    >
+                        Donate
+                        <DollarSign className="w-5 ml-2" />
+                        <span className="ml-2 text-xs text-cyan-700">
+                            Coming Soon
+                        </span>
+                    </Button>
                 }
                 <div className="flex gap-2 items-center">
                     <Button onClick={() => modifyLike()} variant={"ghost"} size={"icon"}>
